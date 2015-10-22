@@ -2,7 +2,18 @@ logging:
   level:
     io:
       pivotal: DEBUG
-eureka: # <--- ADD NEW SECTION
+eureka:
   instance:
     metadataMap:
       instanceId: ${spring.application.name}:${server.port:8080}
+
+--- # <--- ADD NEW DOCUMENT
+
+spring:
+  profiles: cloud
+eureka:
+  instance:
+    hostname: ${vcap.application.uris[0]}
+    nonSecurePort: 80
+    metadataMap:
+      instanceId: ${vcap.application.instance_id}
