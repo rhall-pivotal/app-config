@@ -7,7 +7,7 @@ eureka:
     metadataMap:
       instanceId: ${spring.application.name}:${server.port:8080}
 
---- # <--- ADD NEW DOCUMENT
+---
 
 spring:
   profiles: cloud
@@ -17,3 +17,12 @@ eureka:
     nonSecurePort: 80
     metadataMap:
       instanceId: ${vcap.application.instance_id}
+
+---  # <--- ADD NEW DOCUMENT
+
+spring:
+  profiles: dev
+eureka:
+  client:    
+    serviceUrl:
+      defaultZone: http://service-registry-1.apps.deschutes.mini.pez.pivotal.io/eureka/ # <-- substitute your service-registry url
